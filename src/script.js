@@ -1,0 +1,1 @@
+Sortable.create($('#notes-panel')[0]);
