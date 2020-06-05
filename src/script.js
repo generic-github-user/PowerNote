@@ -36,4 +36,8 @@ notes.forEach((note) => {
       item.text(note);
       $('#notes-panel').append(item);
 })
-Sortable.create($('#notes-panel')[0]);
+Sortable.create($('#notes-panel')[0], {
+      multiDrag: true,
+      selectedClass: "selected",
+      animation: 150
+});

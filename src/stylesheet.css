@@ -6,3 +6,8 @@ li {
       padding: 2px !important;
       width: 500px !important;
 }
+
+.selected {
+      background-color: #CFC;
+      border-color: #ACA;
+}
