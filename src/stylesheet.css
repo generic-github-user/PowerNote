@@ -2,3 +2,7 @@
       width: 200px;
       margin: 50px;
 } */
+li {
+      padding: 2px !important;
+      width: 500px !important;
+}
