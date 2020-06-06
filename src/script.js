@@ -81,6 +81,29 @@ $('#deselect-notes-button').click(() => {
       });
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
 });
+$('#sort_az-notes-button').click(() => {
+      current_list = [];
+      selection = $('li.selected');
+
+      record_event({
+            'type': 'sort_az',
+            'items': selection
+      });
+
+      for (var i = 0; i < selection.length; i++) {
+            current_list.push(selection[i].innerText);
+      }
+      sorted_list = current_list.sort().reverse();
+
+      // items are inserted in reverse order
+      for (var i = 0; i < sorted_list.length; i++) {
+            item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
+            item.text(sorted_list[i]);
+            item.insertAfter(selection[0]);
+            Sortable.utils.select(item[0]);
+      }
+      selection.remove()
+});
 
 notes = testdata.split('\n');
 notes.forEach((note) => {
