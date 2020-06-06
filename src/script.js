@@ -58,6 +58,9 @@ $('#merge-notes-button').click(() => {
             selected.get(i).remove()
       }
 });
+$('#select-notes-button').click(() => {
+      $('li').each((index) => Sortable.utils.select($('li')[index]))
+});
 
 notes = testdata.split('\n');
 notes.forEach((note) => {
