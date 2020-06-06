@@ -5,9 +5,34 @@
 li {
       padding: 0px 2px !important;
       width: 500px !important;
+      user-select: none;
+      font-size: 20px;
 }
 
 .selected {
       background-color: #CFC;
       border-color: #ACA;
+}
+
+#sidebar {
+      background: #004287;
+      color: #ffffff;
+      transition: all 0.5s;
+      min-width: 250px;
+      max-width: 250px;
+      min-height: 100vh;
+}
+
+.wrapper {
+      display: flex;
+      width: 100%;
+      align-items: stretch;
+}
+
+#sidebar .sidebar-header {
+      margin: 20px;
+}
+
+#notes-panel {
+      margin: 20px;
 }
