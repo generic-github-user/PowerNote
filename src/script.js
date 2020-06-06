@@ -47,6 +47,12 @@ function record_event(event) {
       });
 }
 
+function load_note(text) {
+      element = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
+      element.text(text);
+      return element;
+}
+
 $('#delete-notes-button').click(() => {
       record_event({
             'type': 'delete',
@@ -97,8 +103,7 @@ $('#sort_az-notes-button').click(() => {
 
       // items are inserted in reverse order
       for (var i = 0; i < sorted_list.length; i++) {
-            item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
-            item.text(sorted_list[i]);
+            item = load_note(sorted_list[i]);
             item.insertAfter(selection[0]);
             Sortable.utils.select(item[0]);
       }
@@ -107,9 +112,7 @@ $('#sort_az-notes-button').click(() => {
 
 notes = testdata.split('\n');
 notes.forEach((note) => {
-      item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
-      item.text(note);
-      $('#notes-panel').append(item);
+      $('#notes-panel').append(load_note(note));
 })
 
 function write_to_text() {
