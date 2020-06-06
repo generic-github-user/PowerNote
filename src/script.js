@@ -47,6 +47,10 @@ function record_event(event) {
       });
 }
 
+$('#delete-notes-button').click(() => {
+      $('li.list-group-item.selected').remove();
+});
+
 notes = testdata.split('\n');
 notes.forEach((note) => {
       item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
@@ -60,4 +64,16 @@ sortable = Sortable.create($('#notes-panel')[0], {
       onStart: function(evt) {
             record_event(evt)
       }
+});
+
+// https://github.com/SortableJS/Sortable/issues/1612#issuecomment-526477250
+// let deselectMultiDrag = sortable.multiDrag._deselectMultiDrag;
+// document.removeEventListener('pointerup', deselectMultiDrag, false);
+// document.removeEventListener('mouseup', deselectMultiDrag, false);
+// document.removeEventListener('touchend', deselectMultiDrag, false);
+
+// Stop event propagation so clicks in sidebar don't deselect notes
+// https://github.com/SortableJS/Sortable/issues/1612#issuecomment-533777362
+$('nav#sidebar').on('pointerup mouseup touchend', function(event) {
+      event.stopPropagation();
 });
