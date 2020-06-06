@@ -53,6 +53,12 @@ function load_note(text) {
       return element;
 }
 
+function note_elements_to_array(selection) {
+      note_list = [];
+      selection.each((i) => note_list.push(selection[i].innerText));
+      return note_list;
+}
+
 $('#delete-notes-button').click(() => {
       record_event({
             'type': 'delete',
@@ -88,7 +94,6 @@ $('#deselect-notes-button').click(() => {
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
 });
 $('#sort_az-notes-button').click(() => {
-      current_list = [];
       selection = $('li.selected');
 
       record_event({
@@ -96,10 +101,7 @@ $('#sort_az-notes-button').click(() => {
             'items': selection
       });
 
-      for (var i = 0; i < selection.length; i++) {
-            current_list.push(selection[i].innerText);
-      }
-      sorted_list = current_list.sort().reverse();
+      sorted_list = note_elements_to_array(selection).sort().reverse();
 
       // items are inserted in reverse order
       for (var i = 0; i < sorted_list.length; i++) {
@@ -116,11 +118,7 @@ notes.forEach((note) => {
 })
 
 function write_to_text() {
-      current_list = [];
-      for (var i = 0; i < $('li').length; i++) {
-            current_list.push($('li')[i].innerText);
-      }
-      $('#text-panel').val(current_list.join('\n'))
+      $('#text-panel').val(note_elements_to_array($('li')).join('\n'))
 }
 
 sortable = Sortable.create($('#notes-panel')[0], {
