@@ -86,6 +86,42 @@ function update_single_button(condition, element, button_text, suffix) {
             element.prop('disabled', true);
       }
 }
+
+function update_buttons() {
+      selection_size = $('li.selected').length;
+
+      update_single_button(selection_size > 0, $('#delete-notes-button'), 'Delete')
+      update_single_button(selection_size > 1, $('#merge-notes-button'), 'Merge')
+      update_single_button(selection_size > 0, $('#unmerge-notes-button'), 'Unmerge')
+      update_single_button(selection_size > 0, $('#deselect-notes-button'), 'Deselect')
+      update_single_button(selection_size > 0, $('#sort_az-notes-button'), 'Sort', 'A &#8594; Z')
+      update_single_button(selection_size > 0, $('#sort_za-notes-button'), 'Sort', 'Z &#8594; A')
+
+      // if (selection_size > 1) {
+      //       $('#merge-notes-button').text('Merge ' + selection_size);
+      //       $('#merge-notes-button').prop('disabled', false);
+      // } else {
+      //       $('#merge-notes-button').text('Merge');
+      //       $('#merge-notes-button').prop('disabled', true);
+      // }
+      //
+      // if (selection_size > 0) {
+      //       $('#unmerge-notes-button').text('Unmerge ' + selection_size);
+      //       $('#unmerge-notes-button').prop('disabled', false);
+      // } else {
+      //       $('#unmerge-notes-button').text('Unmerge');
+      //       $('#unmerge-notes-button').prop('disabled', true);
+      // }
+      //
+      // if (selection_size > 0) {
+      //       $('#deselect-notes-button').text('Deselect ' + selection_size);
+      //       $('#deselect-notes-button').prop('disabled', false);
+      // } else {
+      //       $('#deselect-notes-button').text('Deselect');
+      //       $('#deselect-notes-button').prop('disabled', true);
+      // }
+}
+
 // Delete selection
 $('#delete-notes-button').click(() => {
       record_event({
