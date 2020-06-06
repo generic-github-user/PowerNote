@@ -103,3 +103,5 @@ $('nav#sidebar').on('pointerup mouseup touchend', function(event) {
 $('.toast').toast({
       'delay': 10000
 })
+
+write_to_text();
