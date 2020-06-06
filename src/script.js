@@ -81,6 +81,10 @@ sortable = Sortable.create($('#notes-panel')[0], {
       onStart: function(evt) {
             record_event(evt);
             write_to_text();
+      },
+      onSort: function(evt) {
+            record_event(evt);
+            write_to_text();
       }
 });
 
