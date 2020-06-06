@@ -113,6 +113,15 @@ $('#sort_az-notes-button').click(() => {
       sorted_list = note_elements_to_array(selection).sort();
       replace_note_elements(selection, sorted_list);
 });
+$('#sort_za-notes-button').click(() => {
+      selection = $('li.selected');
+      record_event({
+            'type': 'sort_za',
+            'items': selection
+      });
+      sorted_list = note_elements_to_array(selection).sort().reverse();
+      replace_note_elements(selection, sorted_list);
+});
 
 notes = testdata.split('\n');
 notes.forEach((note) => {
