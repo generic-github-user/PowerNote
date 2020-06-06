@@ -4,7 +4,7 @@
 } */
 li {
       padding: 0px 2px !important;
-      width: 500px !important;
+      width: 400px !important;
       user-select: none;
       font-size: 20px;
 }
@@ -33,6 +33,24 @@ li {
       margin: 20px;
 }
 
+#content {
+      display: inline-block;
+      width: 100%;
+}
+
+#text-panel {
+      float: right;
+      width: 400px;
+      margin: 20px;
+}
+
 #notes-panel {
       margin: 20px;
+      float: left;
+}
+
+div.alert {
+      position: fixed;
+      margin: 20px;
+      bottom: 10px;
 }
