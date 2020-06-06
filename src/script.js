@@ -19,6 +19,16 @@ inheritors\
 \ncantankerous\
 \n\
 \nnon sequiturs\
+\nmalfeasance\
+\n\
+\nconcomitant\
+\nglass castle\
+\ndiminutive\
+\ncommissary\
+\nlapidary\
+\ncatchetism\
+\nsurreptitious\
+\npreeminent\
 \naplomb\
 \nslovenly\
 \nsupple\
@@ -150,6 +160,7 @@ $('#select-notes-button').click(() => {
             'items': $('li')
       });
       $('li').each((index) => Sortable.utils.select($('li')[index]))
+      update_buttons();
 });
 // Deselect all
 $('#deselect-notes-button').click(() => {
@@ -158,6 +169,7 @@ $('#deselect-notes-button').click(() => {
             'items': $('li')
       });
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
+      update_buttons();
 });
 // Alphabetical sort
 $('#sort_az-notes-button').click(() => {
@@ -233,3 +245,4 @@ $('.toast').toast({
 })
 
 write_to_text();
+update_buttons();

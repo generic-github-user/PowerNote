@@ -16,6 +16,7 @@ li {
 
 #sidebar {
       background: #004287;
+      position: fixed;
       color: #ffffff;
       transition: all 0.5s;
       min-width: 250px;
