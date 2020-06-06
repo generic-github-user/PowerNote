@@ -48,20 +48,37 @@ function record_event(event) {
 }
 
 $('#delete-notes-button').click(() => {
+      record_event({
+            'type': 'delete',
+            'items': $('li.list-group-item.selected')
+      });
       $('li.list-group-item.selected').remove();
 });
 
 $('#merge-notes-button').click(() => {
-      selected = $('li.selected')
+      selected = $('li.selected');
+      record_event({
+            'type': 'merge',
+            'items': selected
+      });
+
       for (var i = 1; i < selected.length; i++) {
             selected.get(0).innerText += "\n" + selected.get(i).innerText
             selected.get(i).remove()
       }
 });
 $('#select-notes-button').click(() => {
+      record_event({
+            'type': 'select',
+            'items': $('li')
+      });
       $('li').each((index) => Sortable.utils.select($('li')[index]))
 });
 $('#deselect-notes-button').click(() => {
+      record_event({
+            'type': 'deselect',
+            'items': $('li')
+      });
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
 });
 
