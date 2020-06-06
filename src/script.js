@@ -139,6 +139,7 @@ $('#delete-notes-button').click(() => {
             'items': $('li.list-group-item.selected')
       });
       $('li.list-group-item.selected').remove();
+      update_buttons();
 });
 // Merge multiple notes into one
 $('#merge-notes-button').click(() => {
@@ -152,6 +153,8 @@ $('#merge-notes-button').click(() => {
             selected.get(0).innerText += "\n" + selected.get(i).innerText
             selected.get(i).remove()
       }
+
+      update_buttons();
 });
 // Select all
 $('#select-notes-button').click(() => {
