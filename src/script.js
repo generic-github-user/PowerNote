@@ -203,6 +203,16 @@ sortable = Sortable.create($('#notes-panel')[0], {
       onSort: function(evt) {
             record_event(evt);
             write_to_text();
+      },
+      onSelect: function(evt) {
+            record_event(evt);
+            write_to_text();
+            update_buttons();
+      },
+      onDeselect: function(evt) {
+            record_event(evt);
+            write_to_text();
+            update_buttons();
       }
 });
 
