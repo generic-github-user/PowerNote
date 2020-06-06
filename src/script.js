@@ -74,11 +74,9 @@ function note_elements_to_array(selection) {
 
 // Replace a list of selected notes with another, even better, list
 function replace_note_elements(selection, sorted_list) {
-      sorted_list.reverse();
-      // items are inserted in reverse order
       for (var i = 0; i < sorted_list.length; i++) {
             item = load_note(sorted_list[i]);
-            item.insertAfter(selection[0]);
+            item.insertBefore(selection[0]);
             Sortable.utils.select(item[0]);
       }
       selection.remove()
