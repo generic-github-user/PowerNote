@@ -59,6 +59,17 @@ function note_elements_to_array(selection) {
       return note_list;
 }
 
+function replace_note_elements(selection, sorted_list) {
+      sorted_list.reverse();
+      // items are inserted in reverse order
+      for (var i = 0; i < sorted_list.length; i++) {
+            item = load_note(sorted_list[i]);
+            item.insertAfter(selection[0]);
+            Sortable.utils.select(item[0]);
+      }
+      selection.remove()
+}
+
 $('#delete-notes-button').click(() => {
       record_event({
             'type': 'delete',
@@ -95,21 +106,12 @@ $('#deselect-notes-button').click(() => {
 });
 $('#sort_az-notes-button').click(() => {
       selection = $('li.selected');
-
       record_event({
             'type': 'sort_az',
             'items': selection
       });
-
-      sorted_list = note_elements_to_array(selection).sort().reverse();
-
-      // items are inserted in reverse order
-      for (var i = 0; i < sorted_list.length; i++) {
-            item = load_note(sorted_list[i]);
-            item.insertAfter(selection[0]);
-            Sortable.utils.select(item[0]);
-      }
-      selection.remove()
+      sorted_list = note_elements_to_array(selection).sort();
+      replace_note_elements(selection, sorted_list);
 });
 
 notes = testdata.split('\n');
