@@ -65,12 +65,22 @@ notes.forEach((note) => {
       item.text(note);
       $('#notes-panel').append(item);
 })
+
+function write_to_text() {
+      current_list = [];
+      for (var i = 0; i < $('li').length; i++) {
+            current_list.push($('li')[i].innerText);
+      }
+      $('#text-panel').val(current_list.join('\n'))
+}
+
 sortable = Sortable.create($('#notes-panel')[0], {
       multiDrag: true,
       selectedClass: "selected",
       animation: 150,
       onStart: function(evt) {
-            record_event(evt)
+            record_event(evt);
+            write_to_text();
       }
 });
 
