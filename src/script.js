@@ -51,6 +51,14 @@ $('#delete-notes-button').click(() => {
       $('li.list-group-item.selected').remove();
 });
 
+$('#merge-notes-button').click(() => {
+      selected = $('li.selected')
+      for (var i = 1; i < selected.length; i++) {
+            selected.get(0).innerText += "\n" + selected.get(i).innerText
+            selected.get(i).remove()
+      }
+});
+
 notes = testdata.split('\n');
 notes.forEach((note) => {
       item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
@@ -77,3 +85,7 @@ sortable = Sortable.create($('#notes-panel')[0], {
 $('nav#sidebar').on('pointerup mouseup touchend', function(event) {
       event.stopPropagation();
 });
+
+$('.toast').toast({
+      'delay': 10000
+})
