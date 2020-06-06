@@ -40,6 +40,7 @@ event_chain = [];
 // sortable.on($('#notes-panel')[0],'onEnd',(e)=>{console.log(e)})
 // Sortable.utils.on($('#notes-panel').children()[0],'onStart',(events)=>{console.log(true)})
 
+// Record a user action or Sortable.js event
 function record_event(event) {
       event_chain.push({
             'time': new Date().getTime(),
@@ -47,18 +48,21 @@ function record_event(event) {
       });
 }
 
+// Load a note element
 function load_note(text) {
       element = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
       element.text(text);
       return element;
 }
 
+// Convert list of note elements to an array of their contents
 function note_elements_to_array(selection) {
       note_list = [];
       selection.each((i) => note_list.push(selection[i].innerText));
       return note_list;
 }
 
+// Replace a list of selected notes with another, even better, list
 function replace_note_elements(selection, sorted_list) {
       sorted_list.reverse();
       // items are inserted in reverse order
@@ -70,6 +74,7 @@ function replace_note_elements(selection, sorted_list) {
       selection.remove()
 }
 
+// Delete selection
 $('#delete-notes-button').click(() => {
       record_event({
             'type': 'delete',
@@ -77,7 +82,7 @@ $('#delete-notes-button').click(() => {
       });
       $('li.list-group-item.selected').remove();
 });
-
+// Merge multiple notes into one
 $('#merge-notes-button').click(() => {
       selected = $('li.selected');
       record_event({
@@ -90,6 +95,7 @@ $('#merge-notes-button').click(() => {
             selected.get(i).remove()
       }
 });
+// Select all
 $('#select-notes-button').click(() => {
       record_event({
             'type': 'select',
@@ -97,6 +103,7 @@ $('#select-notes-button').click(() => {
       });
       $('li').each((index) => Sortable.utils.select($('li')[index]))
 });
+// Deselect all
 $('#deselect-notes-button').click(() => {
       record_event({
             'type': 'deselect',
@@ -104,6 +111,7 @@ $('#deselect-notes-button').click(() => {
       });
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
 });
+// Alphabetical sort
 $('#sort_az-notes-button').click(() => {
       selection = $('li.selected');
       record_event({
@@ -113,6 +121,7 @@ $('#sort_az-notes-button').click(() => {
       sorted_list = note_elements_to_array(selection).sort();
       replace_note_elements(selection, sorted_list);
 });
+// Reverse alphabetical sort
 $('#sort_za-notes-button').click(() => {
       selection = $('li.selected');
       record_event({
@@ -123,15 +132,18 @@ $('#sort_za-notes-button').click(() => {
       replace_note_elements(selection, sorted_list);
 });
 
+// Load test data
 notes = testdata.split('\n');
 notes.forEach((note) => {
       $('#notes-panel').append(load_note(note));
 })
 
+// Convert list of note elements to text field
 function write_to_text() {
       $('#text-panel').val(note_elements_to_array($('li')).join('\n'))
 }
 
+// Create sortable instance for notes list
 sortable = Sortable.create($('#notes-panel')[0], {
       multiDrag: true,
       selectedClass: "selected",
