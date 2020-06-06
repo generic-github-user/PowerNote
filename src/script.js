@@ -30,6 +30,9 @@ inheritors\
 \nmotile\
 \nexigence';
 
+function generate_id() {
+      return Math.floor(Math.random() * 1e16).toString(16)
+}
 notes = testdata.split('\n');
 notes.forEach((note) => {
       item = $('<li type="button" class="list-group-item list-group-item-action">Lorem ipsum</li>');
