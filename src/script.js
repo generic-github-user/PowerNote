@@ -74,6 +74,18 @@ function replace_note_elements(selection, sorted_list) {
       selection.remove()
 }
 
+function update_single_button(condition, element, button_text, suffix) {
+      if (!suffix) {
+            suffix = '';
+      }
+      if (condition) {
+            element.html(button_text + ' ' + selection_size + ' ' + suffix);
+            element.prop('disabled', false);
+      } else {
+            element.html(button_text + ' ' + suffix);
+            element.prop('disabled', true);
+      }
+}
 // Delete selection
 $('#delete-notes-button').click(() => {
       record_event({
