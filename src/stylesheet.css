@@ -50,12 +50,15 @@ div.container {
 
 div.notes-panel {
       margin: 20px;
+      margin-left: 40px;
+      padding: 0px;
       /* width: 30%; */
 }
 
 div.text-panel {
       /* width: 30%; */
       margin: 20px;
+      padding: 0px;
       font-size: 20px;
       line-height: 31px;
       padding-top: 0px;
