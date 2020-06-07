@@ -138,6 +138,7 @@ $('#delete-notes-button').click(() => {
       });
       $('li.list-group-item.selected').remove();
       update_buttons();
+      write_to_text();
 });
 // Merge multiple notes into one
 $('#merge-notes-button').click(() => {
@@ -201,7 +202,15 @@ notes.forEach((note) => {
 
 // Convert list of note elements to text field
 function write_to_text() {
-      $('#text-panel').val(note_elements_to_array($('li')).join('\n'))
+      $('#text-panel').val(note_elements_to_array($('li')).join('\n'));
+      update_textarea();
+}
+
+function update_textarea() {
+      t = $('#text-panel')[0];
+      // Adapted from https://stackoverflow.com/a/1430925
+      t.style.height = "";
+      t.style.height = t.scrollHeight + 3 + "px";
 }
 
 // Create sortable instance for notes list
@@ -253,3 +262,5 @@ $('.toast').toast({
 
 write_to_text();
 update_buttons();
+$(document).ready(update_textarea);
+$('#text-panel').on('input', update_textarea);
