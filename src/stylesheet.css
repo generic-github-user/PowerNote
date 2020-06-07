@@ -43,18 +43,18 @@ li {
       width: 100%;
 }
 
-#content {
+div.container {
       width: 80%;
       float: right;
 }
 
 div.notes-panel {
       margin: 20px;
-      width: 30%;
+      /* width: 30%; */
 }
 
 div.text-panel {
-      width: 30%;
+      /* width: 30%; */
       margin: 20px;
       font-size: 20px;
       line-height: 31px;
@@ -65,14 +65,20 @@ div.text-panel {
 div.text-panel>* {
       width: 100%;
       height: 100%;
+      overflow: auto;
 }
 
 div.alert {
-      position: fixed;
+      /* position: fixed; */
       margin: 20px;
-      bottom: 10px;
+      /* bottom: 10px; */
 }
 
 button {
       user-select: none;
+}
+
+textarea {
+      border: 1px solid rgba(0, 0, 0, .125);
+      color: #495057;
 }
