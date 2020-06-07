@@ -243,7 +243,7 @@ button_sortable = Sortable.create($('#button-list')[0], {
 
 // Stop event propagation so clicks in sidebar don't deselect notes
 // https://github.com/SortableJS/Sortable/issues/1612#issuecomment-533777362
-$('nav#sidebar').on('pointerup mouseup touchend', function(event) {
+$('#sidebar').on('pointerup mouseup touchend', function(event) {
       event.stopPropagation();
 });
 
