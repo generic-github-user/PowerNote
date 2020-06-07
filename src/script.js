@@ -229,6 +229,12 @@ sortable = Sortable.create($('#notes-panel')[0], {
       }
 });
 
+// Create sortable instance for button list
+button_sortable = Sortable.create($('#button-list')[0], {
+      selectedClass: "selected",
+      animation: 150,
+});
+
 // https://github.com/SortableJS/Sortable/issues/1612#issuecomment-526477250
 // let deselectMultiDrag = sortable.multiDrag._deselectMultiDrag;
 // document.removeEventListener('pointerup', deselectMultiDrag, false);

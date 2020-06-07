@@ -58,3 +58,7 @@ div.alert {
       margin: 20px;
       bottom: 10px;
 }
+
+button {
+      user-select: none;
+}
