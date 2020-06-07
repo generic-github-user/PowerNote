@@ -264,3 +264,7 @@ write_to_text();
 update_buttons();
 $(document).ready(update_textarea);
 $('#text-panel').on('input', update_textarea);
+
+$(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+})
