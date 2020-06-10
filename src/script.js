@@ -44,8 +44,24 @@ function generate_id() {
       return Math.floor(Math.random() * 1e16).toString(16)
 }
 
-groups = {};
+if (localStorage.getItem('powernote_data-notes') == null) {
+      notes = [];
+      // Load test data
+      notes = testdata.split('\n');
+} else {
+      notes = JSON.parse(localStorage.getItem('powernote_data-notes'));
+}
+groups = [];
 event_chain = [];
+
+notes.forEach((note) => {
+      $('#notes-panel').append(load_note(note));
+})
+
+function sync() {
+      notes = note_elements_to_array($('li'));
+      localStorage.setItem('powernote_data-notes', JSON.stringify(notes));
+}
 
 // sortable.on($('#notes-panel')[0],'onEnd',(e)=>{console.log(e)})
 // Sortable.utils.on($('#notes-panel').children()[0],'onStart',(events)=>{console.log(true)})
@@ -146,6 +162,7 @@ $('#delete-notes-button').click(() => {
       $('li.list-group-item.selected').remove();
       update_buttons();
       write_to_text();
+      sync();
 });
 // Merge multiple notes into one
 $('#merge-notes-button').click(() => {
@@ -161,6 +178,7 @@ $('#merge-notes-button').click(() => {
       }
 
       update_buttons();
+      sync();
 });
 // Unmerge (split by newline)
 $('#unmerge-notes-button').click(() => {
@@ -178,6 +196,7 @@ $('#unmerge-notes-button').click(() => {
       }
 
       update_buttons();
+      sync();
 });
 // Select all
 $('#select-notes-button').click(() => {
@@ -187,6 +206,7 @@ $('#select-notes-button').click(() => {
       });
       $('li').each((index) => Sortable.utils.select($('li')[index]))
       update_buttons();
+      sync();
 });
 // Deselect all
 $('#deselect-notes-button').click(() => {
@@ -196,6 +216,7 @@ $('#deselect-notes-button').click(() => {
       });
       $('li').each((index) => Sortable.utils.deselect($('li')[index]))
       update_buttons();
+      sync();
 });
 // Alphabetical sort
 $('#sort_az-notes-button').click(() => {
@@ -206,6 +227,7 @@ $('#sort_az-notes-button').click(() => {
       });
       sorted_list = note_elements_to_array(selection).sort();
       replace_note_elements(selection, sorted_list);
+      sync();
 });
 // Reverse alphabetical sort
 $('#sort_za-notes-button').click(() => {
@@ -216,6 +238,7 @@ $('#sort_za-notes-button').click(() => {
       });
       sorted_list = note_elements_to_array(selection).sort().reverse();
       replace_note_elements(selection, sorted_list);
+      sync();
 });
 // Short to long sort
 $('#sort_sl-notes-button').click(() => {
@@ -226,6 +249,7 @@ $('#sort_sl-notes-button').click(() => {
       });
       sorted_list = note_elements_to_array(selection).sort((a, b) => a.length - b.length);
       replace_note_elements(selection, sorted_list);
+      sync();
 });
 // Short to long sort
 $('#sort_ls-notes-button').click(() => {
@@ -236,6 +260,7 @@ $('#sort_ls-notes-button').click(() => {
       });
       sorted_list = note_elements_to_array(selection).sort((a, b) => a.length - b.length).reverse();
       replace_note_elements(selection, sorted_list);
+      sync();
 });
 // Reverse alphabetical sort
 $('#number-notes-button').click(() => {
@@ -249,18 +274,14 @@ $('#number-notes-button').click(() => {
             list[i] = (i + 1) + '. ' + list[i];
       }
       replace_note_elements(selection, list);
+      sync();
 });
-
-// Load test data
-notes = testdata.split('\n');
-notes.forEach((note) => {
-      $('#notes-panel').append(load_note(note));
-})
 
 // Convert list of note elements to text field
 function write_to_text() {
       $('#text-panel').val(note_elements_to_array($('li')).join('\n'));
       update_textarea();
+      sync();
 }
 
 function update_textarea() {
@@ -268,6 +289,7 @@ function update_textarea() {
       // Adapted from https://stackoverflow.com/a/1430925
       t.style.height = "";
       t.style.height = t.scrollHeight + 3 + "px";
+      sync();
 }
 
 // Create sortable instance for notes list
@@ -278,20 +300,24 @@ sortable = Sortable.create($('#notes-panel')[0], {
       onStart: function(evt) {
             record_event(evt);
             write_to_text();
+            sync();
       },
       onSort: function(evt) {
             record_event(evt);
             write_to_text();
+            sync();
       },
       onSelect: function(evt) {
             record_event(evt);
             write_to_text();
             update_buttons();
+            sync();
       },
       onDeselect: function(evt) {
             record_event(evt);
             write_to_text();
             update_buttons();
+            sync();
       }
 });
 
