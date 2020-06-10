@@ -71,4 +71,6 @@ Coming soon
 
 ## Acknowledgments
 
-* Coming soon
+* [README-Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+* [SemVer](http://semver.org/)
+* [markdown-toc](https://github.com/jonschlinkert/markdown-toc)
