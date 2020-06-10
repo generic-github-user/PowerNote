@@ -14,6 +14,10 @@ li {
       border-color: #00c84a;
 }
 
+div.input-group {
+      width: 80% !important;
+}
+
 /* #content>* {
       display: inline-block !important;
 } */

@@ -153,6 +153,21 @@ function update_buttons() {
       // }
 }
 
+function add_note(content) {
+      notes.push(content);
+}
+
+$('#add-note-field').keyup(function(event) {
+      if (event.keyCode === 13) {
+            var note_text = $('#add-note-field').val();
+            console.log(note_text)
+            add_note(note_text);
+            $('#notes-panel').append(load_note(note_text));
+            sync();
+            $('#add-note-field').val('');
+      }
+});
+
 // Delete selection
 $('#delete-notes-button').click(() => {
       record_event({
