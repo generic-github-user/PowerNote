@@ -109,6 +109,7 @@ function update_buttons() {
       update_single_button(selection_size > 0, $('#sort_az-notes-button'), 'Sort', 'A &#8594; Z')
       update_single_button(selection_size > 0, $('#sort_za-notes-button'), 'Sort', 'Z &#8594; A')
       update_single_button(selection_size > 0, $('#sort_sl-notes-button'), 'Sort', 'Short &#8594; Long')
+      update_single_button(selection_size > 0, $('#sort_ls-notes-button'), 'Sort', 'Long &#8594; Short')
       update_single_button(selection_size > 0, $('#number-notes-button'), 'Number')
 
       // if (selection_size > 1) {
@@ -224,6 +225,16 @@ $('#sort_sl-notes-button').click(() => {
             'items': selection
       });
       sorted_list = note_elements_to_array(selection).sort((a, b) => a.length - b.length);
+      replace_note_elements(selection, sorted_list);
+});
+// Short to long sort
+$('#sort_ls-notes-button').click(() => {
+      selection = $('li.selected');
+      record_event({
+            'type': 'sort_ls',
+            'items': selection
+      });
+      sorted_list = note_elements_to_array(selection).sort((a, b) => a.length - b.length).reverse();
       replace_note_elements(selection, sorted_list);
 });
 // Reverse alphabetical sort
