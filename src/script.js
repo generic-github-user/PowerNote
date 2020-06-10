@@ -68,7 +68,9 @@ function load_note(text) {
 // Convert list of note elements to an array of their contents
 function note_elements_to_array(selection) {
       note_list = [];
-      selection.each((i) => note_list.push(selection[i].innerText));
+      for (var i = 0; i < selection.length; i++) {
+            note_list.push(selection[i].innerText);
+      }
       return note_list;
 }
 
@@ -79,7 +81,9 @@ function replace_note_elements(selection, sorted_list) {
             item.insertBefore(selection[0]);
             Sortable.utils.select(item[0]);
       }
-      selection.remove()
+      for (var i = 0; i < selection.length; i++) {
+            selection[i].remove()
+      }
 }
 
 function update_single_button(condition, element, button_text, suffix) {
@@ -152,6 +156,23 @@ $('#merge-notes-button').click(() => {
       for (var i = 1; i < selected.length; i++) {
             selected.get(0).innerText += "\n" + selected.get(i).innerText
             selected.get(i).remove()
+      }
+
+      update_buttons();
+});
+// Unmerge (split by newline)
+$('#unmerge-notes-button').click(() => {
+      record_event({
+            'type': 'unmerge',
+            'items': $('li')
+      });
+      selection = $('li.selected');
+
+      for (var i = 0; i < selection.length; i++) {
+            replace_note_elements(
+                  [selection[i]],
+                  note_elements_to_array([selection[i]])[0].split('\n')
+            );
       }
 
       update_buttons();
