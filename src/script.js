@@ -104,6 +104,7 @@ function update_buttons() {
       update_single_button(selection_size > 0, $('#deselect-notes-button'), 'Deselect')
       update_single_button(selection_size > 0, $('#sort_az-notes-button'), 'Sort', 'A &#8594; Z')
       update_single_button(selection_size > 0, $('#sort_za-notes-button'), 'Sort', 'Z &#8594; A')
+      update_single_button(selection_size > 0, $('#number-notes-button'), 'Number')
 
       // if (selection_size > 1) {
       //       $('#merge-notes-button').text('Merge ' + selection_size);
@@ -192,6 +193,19 @@ $('#sort_za-notes-button').click(() => {
       });
       sorted_list = note_elements_to_array(selection).sort().reverse();
       replace_note_elements(selection, sorted_list);
+});
+// Reverse alphabetical sort
+$('#number-notes-button').click(() => {
+      selection = $('li.selected');
+      record_event({
+            'type': 'number',
+            'items': selection
+      });
+      var list = note_elements_to_array(selection);
+      for (var i = 0; i < list.length; i++) {
+            list[i] = (i + 1) + '. ' + list[i];
+      }
+      replace_note_elements(selection, list);
 });
 
 // Load test data
