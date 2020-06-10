@@ -52,6 +52,9 @@ Coming soon
 ## Built With
 
 * [jQuery](https://jquery.com/) - Main JavaScript framework
+* [Bootstrap](https://getbootstrap.com/) - Design framework
+* [SortableJS](https://sortablejs.github.io/Sortable/) - Click-and-drag sorting
+* [Fuse.js](https://fusejs.io/) - Fuzzy search functionality
 
 ## Contributing
 
